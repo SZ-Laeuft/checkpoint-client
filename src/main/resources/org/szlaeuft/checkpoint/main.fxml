@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.szlaeuft.checkpoint.Controler">
+  <children>
+      <HBox prefHeight="12.0" prefWidth="640.0">
+         <children>
+          <MenuBar prefHeight="0.0" prefWidth="590.0" style="-fx-background-color: fff; -fx-padding: 9;" HBox.hgrow="ALWAYS">
+            <menus>
+              <Menu mnemonicParsing="false" text="SZ-Läuft Checkpoint &lt;TIME&gt;">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#settings" text="Einstellungen" />
+                        <MenuItem mnemonicParsing="false" onAction="#debug_toggle" text="Debug" />
+                        <MenuItem mnemonicParsing="false" onAction="#restart" text="Neustart" />
+                        <MenuItem mnemonicParsing="false" onAction="#quit" text="Beenden" />
+                     </items>
+              </Menu>
+            </menus>
+               <cursor>
+                  <Cursor fx:constant="DISAPPEAR" />
+               </cursor>
+          </MenuBar>
+            <ImageView fitHeight="43.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <Rectangle fill="WHITE" height="43.0" smooth="false" stroke="WHITE" strokeType="INSIDE" width="10.0" />
+         </children>
+      </HBox>
+      <Pane prefHeight="440.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+         <children>
+            <GridPane fx:id="info_container" alignment="CENTER" layoutX="36.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="440.0" prefWidth="729.0">
+              <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="152.5" minWidth="10.0" prefWidth="49.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="343.0" minWidth="10.0" prefWidth="316.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="362.5" minWidth="10.0" prefWidth="309.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="133.5" minWidth="10.0" prefWidth="54.5" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="46.5" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="359.0" minHeight="10.0" prefHeight="351.0" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="112.5" minHeight="10.0" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="status_icon" fitHeight="188.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                     <image>
+                        <Image url="@success.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <Text fx:id="user_name" strokeType="OUTSIDE" strokeWidth="0.0" text="Raphael Graf-Andrasch" wrappingWidth="367.13671875" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Text>
+                        <Pane prefHeight="10.0" prefWidth="398.0" />
+                        <GridPane prefHeight="97.0" prefWidth="398.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="ALWAYS" maxWidth="193.0" minWidth="10.0" prefWidth="126.5" />
+                              <ColumnConstraints hgrow="ALWAYS" maxWidth="317.5" minWidth="10.0" prefWidth="241.5" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Runde:" textAlignment="RIGHT" wrappingWidth="119.63671875">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zeit:" textAlignment="RIGHT" wrappingWidth="119.63671875" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bestzeit:" textAlignment="RIGHT" wrappingWidth="119.63671875" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="rounds_counter" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="198.13671875" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="round_timer" strokeType="OUTSIDE" strokeWidth="0.0" text="03:34:52" wrappingWidth="198.13671875" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="best_time" strokeType="OUTSIDE" strokeWidth="0.0" text="02:54:22" wrappingWidth="198.13671875" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+  </children>
+   <cursor>
+      <Cursor fx:constant="NONE" />
+   </cursor>
+</VBox>

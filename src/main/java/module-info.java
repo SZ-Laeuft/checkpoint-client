@@ -1,0 +1,8 @@
+module org.szlaeuft.checkpoint {
+    requires javafx.controls;
+    requires javafx.fxml;
+
+
+    opens org.szlaeuft.checkpoint to javafx.fxml;
+    exports org.szlaeuft.checkpoint;
+}
