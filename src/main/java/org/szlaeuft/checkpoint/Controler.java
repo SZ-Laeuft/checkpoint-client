@@ -18,11 +18,7 @@ public class Controler {
 
     @FXML
     private void debug_toggle(ActionEvent event) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Debug");
-        alert.setHeaderText(null);
-        alert.setContentText("Debug-Modus umgeschaltet.");
-        alert.showAndWait();
+        Application.debugHandler.toggleDebug();
     }
 
     @FXML
