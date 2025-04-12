@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import org.szlaeuft.checkpoint.managers.DebugManager;
 
 public class Controler {
+
+    DebugManager dm = Application.dm;
 
     @FXML
     private void settings(ActionEvent event) {
@@ -18,7 +21,17 @@ public class Controler {
 
     @FXML
     private void debug_toggle(ActionEvent event) {
-        Application.debugHandler.toggleDebug();
+        dm.toggleDebug();
+    }
+
+    @FXML
+    private void debug_fullscreen_toggle(ActionEvent event) {
+        dm.toggleFullscreen();
+    }
+
+    @FXML
+    private void debug_state_toggle(ActionEvent event) {
+        dm.toggleState();
     }
 
     @FXML
@@ -38,4 +51,6 @@ public class Controler {
         System.out.println("Beenden aufgerufen");
         System.exit(0);
     }
+
+
 }
