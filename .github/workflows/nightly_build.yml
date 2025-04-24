@@ -48,7 +48,7 @@ jobs:
     - name: Get Date Tag
       id: tag
       run: |
-        echo "date_tag=nightly-$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+        echo "date_tag=nightly-$(date +'%Y-%m-%d-%H-%M')" >> "$GITHUB_OUTPUT"
 
     - name: Create GitHub Nightly Release
       env:
