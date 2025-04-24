@@ -55,7 +55,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         TAG=${{ steps.tag.outputs.date_tag }}
+        COMMIT_MSG=$(git log -1 --pretty=format:"%s")
         gh release create "$TAG" target/app.zip \
           --title "Nightly Build - $TAG" \
-          --notes "This is an automated nightly build of the latest commit to main."
+          --notes "**Commit:** $COMMIT_MSG\n\nThis is an automated nightly build of the latest commit to main."
 
