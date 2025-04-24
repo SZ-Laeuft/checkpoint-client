@@ -1,0 +1,62 @@
+name: JavaFX Nightly Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  nightly-build:
+    runs-on: ubuntu-latest
+    name: Nightly JavaFX JLink Build
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    - name: Build on ARM64 with QEMU
+      uses: uraimo/run-on-arch-action@v2
+      with:
+        arch: aarch64
+        distro: ubuntu22.04
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+        install: |
+          apt-get update
+          apt-get install -y binutils
+          apt-get install -y wget tar maven
+          # Install JDK 21 for ARM64
+          wget https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.2+13/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.2_13.tar.gz
+          mkdir -p /opt/jdk
+          tar -xzf OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.2_13.tar.gz -C /opt/jdk --strip-components=1
+          export PATH=/opt/jdk/bin:$PATH
+        run: |
+          # Ensure JDK 21 is used
+          export PATH=/opt/jdk/bin:$PATH
+          java -version
+          # Build with Maven
+          mvn -B javafx:jlink
+
+    - name: Get Date Tag
+      id: tag
+      run: |
+        echo "date_tag=nightly-$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
+    - name: Create GitHub Nightly Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        TAG=${{ steps.tag.outputs.date_tag }}
+        COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+        gh release create "$TAG" target/app.zip \
+          --title "Nightly Build - $TAG" \
+          --notes "**Commit:** $COMMIT_MSG\n\nThis is an automated nightly build of the latest commit to main."
+
