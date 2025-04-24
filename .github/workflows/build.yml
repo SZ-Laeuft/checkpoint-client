@@ -1,0 +1,40 @@
+name: Maven JavaFX JLink Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Set up QEMU ARM64 and run Maven
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        server-id: github
+        settings-path: ${{ github.workspace }}
+
+    - name: Install QEMU and run on ARM64
+      uses: uraimo/run-on-arch-action@v2
+      with:
+        arch: aarch64
+        distro: ubuntu22.04
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+        install: |
+          apt-get update
+          apt-get install -y maven
+        run: |
+          mvn -B javafx:jlink
+
+    # Optional: Add Maven publish step here if needed
+    # You'll need to ensure your pom.xml is configured to publish to GitHub Packages
