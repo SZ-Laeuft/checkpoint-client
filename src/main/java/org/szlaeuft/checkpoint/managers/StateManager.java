@@ -59,8 +59,6 @@ public class StateManager {
             case "success":
                 if(message != null) {
                     status_icon.setImage(new Image(getClass().getResource("/icons/success.png").toExternalForm()));
-
-                    message = new MessageHelper("Bereit zu Scannen!");
                     displayMessage(message);
                     break;
                 }

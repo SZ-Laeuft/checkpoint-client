@@ -82,6 +82,9 @@ public class DebugManager {
     }
 
     public void toggleState(){
+        System.out.println(state);
+        MessageHelper mh = new MessageHelper("Raphael Graf-Andrasch", "Runde:", "20", "Zeit:", "03:34:52", "Bestzeit:", "02:54:12");
+
         switch(state){
             case "idle":
                 sm.setCurrentState(state,null);
@@ -92,7 +95,7 @@ public class DebugManager {
                 state = "success";
                 break;
             case "success":
-                sm.setCurrentState(state,new MessageHelper("Raphael Graf-Andrasch", "Runde:", "20", "Zeit:", "03:34:52", "Bestzeit:", "02:54:12"));
+                sm.setCurrentState(state,mh);
                 state = "error";
                 break;
             case "error":
