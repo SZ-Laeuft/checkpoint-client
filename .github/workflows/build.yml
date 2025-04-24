@@ -1,15 +1,17 @@
 name: Maven JavaFX JLink Package
 
 on:
-  release:
-    types: [created, workflow_dispatch]
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
-    name: Set up QEMU ARM64 and run Maven
+    name: Build and Release JavaFX JLink ZIP
     permissions:
-      contents: read
+      contents: write  # Required to create release and upload assets
       packages: write
 
     steps:
@@ -21,10 +23,14 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        server-id: github
-        settings-path: ${{ github.workspace }}
 
-    - name: Install QEMU and run on ARM64
+    - name: Get version from pom.xml
+      id: get_version
+      run: |
+        version=$(xmllint --xpath "/*[local-name()='project']/*[local-name()='version']/text()" pom.xml)
+        echo "version=$version" >> "$GITHUB_OUTPUT"
+
+    - name: Install QEMU and build for ARM64
       uses: uraimo/run-on-arch-action@v2
       with:
         arch: aarch64
@@ -32,9 +38,15 @@ jobs:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
         install: |
           apt-get update
-          apt-get install -y maven
+          apt-get install -y maven zip
         run: |
           mvn -B javafx:jlink
 
-    # Optional: Add Maven publish step here if needed
-    # You'll need to ensure your pom.xml is configured to publish to GitHub Packages
+    - name: Create GitHub Release and upload app.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        TAG="v${{ steps.get_version.outputs.version }}"
+        gh release create "$TAG" target/app.zip \
+          --title "Release $TAG" \
+          --notes "Auto-generated release for version $TAG"
