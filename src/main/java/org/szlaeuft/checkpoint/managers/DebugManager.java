@@ -50,7 +50,7 @@ public class DebugManager {
         ImageView debug_image = (ImageView) stage.getScene().getRoot().lookup("#debug_indicator");
 
         if(debug){
-            stage.setTitle("SZ-Läuft - Checkpoint - DEBUG MODE ACTIVE");
+            stage.setTitle("SZ-Läuft - Checkpoint - DEBUG MODE");
             stage.getScene().setCursor(Cursor.CLOSED_HAND);
 
             debug_fullscreen.setOpacity(1);
