@@ -16,9 +16,10 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.setFullScreen(true);
 
         sm = new StateManager(stage);
         dm.setStage(stage); //execute after stage&scene has been loaded as to be able to access both

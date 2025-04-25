@@ -58,6 +58,7 @@ public class DebugManager {
             debug_state.setOpacity(1);
             debug_state.setCursor(Cursor.HAND);
             debug_image.setOpacity(1);
+            stage.setFullScreen(false);
         }
         else{
             stage.setTitle("SZ-Läuft - Checkpoint");

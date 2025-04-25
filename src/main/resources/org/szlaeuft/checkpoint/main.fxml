@@ -50,9 +50,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.szlaeuft.checkpoint.Controler">
+<VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.szlaeuft.checkpoint.Controler">
   <children>
-      <HBox prefHeight="12.0" prefWidth="640.0">
+      <HBox prefHeight="12.0" prefWidth="1280.0">
          <children>
           <MenuBar prefHeight="0.0" prefWidth="590.0" style="-fx-background-color: fff; -fx-padding: 9;" HBox.hgrow="ALWAYS">
             <menus>
@@ -80,38 +80,38 @@
             <Rectangle fill="WHITE" height="43.0" smooth="false" stroke="WHITE" strokeType="INSIDE" width="10.0" />
          </children>
       </HBox>
-      <Pane prefHeight="440.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+      <Pane prefHeight="440.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
          <children>
-            <GridPane fx:id="info_container" alignment="CENTER" layoutX="36.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="440.0" prefWidth="729.0">
+            <GridPane fx:id="info_container" alignment="CENTER" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="680.0" prefWidth="1280.0">
               <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="152.5" minWidth="10.0" prefWidth="49.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="343.0" minWidth="10.0" prefWidth="316.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="362.5" minWidth="10.0" prefWidth="309.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="133.5" minWidth="10.0" prefWidth="54.5" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="223.0" minWidth="0.0" prefWidth="169.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="495.5" minWidth="10.0" prefWidth="430.5" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="655.0" minWidth="10.0" prefWidth="588.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="133.5" minWidth="0.0" prefWidth="89.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="46.5" valignment="CENTER" vgrow="ALWAYS" />
-                <RowConstraints maxHeight="359.0" minHeight="10.0" prefHeight="351.0" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="224.0" minHeight="5.0" prefHeight="32.0" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="465.0" minHeight="10.0" prefHeight="438.0" valignment="CENTER" vgrow="ALWAYS" />
                 <RowConstraints maxHeight="112.5" minHeight="10.0" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="status_icon" fitHeight="188.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <ImageView fx:id="status_icon" fitHeight="348.0" fitWidth="304.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <image>
                         <Image url="@../../../icons/success.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <children>
-                        <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Raphael Graf-Andrasch" wrappingWidth="367.13671875" VBox.vgrow="ALWAYS">
+                        <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Raphael Graf-Andrasch" wrappingWidth="581.13671875" VBox.vgrow="ALWAYS">
                            <font>
-                              <Font name="System Bold" size="32.0" />
+                              <Font name="System Bold" size="40.0" />
                            </font>
                         </Text>
                         <Pane prefHeight="10.0" prefWidth="398.0" />
-                        <GridPane prefHeight="97.0" prefWidth="398.0">
+                        <GridPane prefHeight="139.0" prefWidth="589.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="ALWAYS" maxWidth="193.0" minWidth="10.0" prefWidth="126.5" />
-                              <ColumnConstraints hgrow="ALWAYS" maxWidth="317.5" minWidth="10.0" prefWidth="241.5" />
+                              <ColumnConstraints hgrow="ALWAYS" maxWidth="214.0" minWidth="10.0" prefWidth="163.0" />
+                              <ColumnConstraints hgrow="ALWAYS" maxWidth="453.5" minWidth="10.0" prefWidth="425.5" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -119,34 +119,34 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Text fx:id="sub1_label" strokeType="OUTSIDE" strokeWidth="0.0" text="Runde:" textAlignment="RIGHT" wrappingWidth="119.63671875">
+                              <Text fx:id="sub1_label" strokeType="OUTSIDE" strokeWidth="0.0" text="Runde:" textAlignment="RIGHT" wrappingWidth="158.63671875">
                                  <font>
-                                    <Font name="System Bold" size="22.0" />
+                                    <Font name="System Bold" size="30.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="sub2_label" strokeType="OUTSIDE" strokeWidth="0.0" text="Zeit:" textAlignment="RIGHT" wrappingWidth="119.63671875" GridPane.rowIndex="1">
+                              <Text fx:id="sub2_label" strokeType="OUTSIDE" strokeWidth="0.0" text="Zeit:" textAlignment="RIGHT" wrappingWidth="159.63671875" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="System Bold" size="22.0" />
+                                    <Font name="System Bold" size="30.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="sub3_label" strokeType="OUTSIDE" strokeWidth="0.0" text="Bestzeit:" textAlignment="RIGHT" wrappingWidth="119.63671875" GridPane.rowIndex="2">
+                              <Text fx:id="sub3_label" strokeType="OUTSIDE" strokeWidth="0.0" text="Bestzeit:" textAlignment="RIGHT" wrappingWidth="157.63671875" GridPane.rowIndex="2">
                                  <font>
-                                    <Font name="System Bold" size="22.0" />
+                                    <Font name="System Bold" size="30.0" />
                                  </font>
                               </Text>
                               <Text fx:id="sub1_value" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="198.13671875" GridPane.columnIndex="1">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="30.0" />
                                  </font>
                               </Text>
                               <Text fx:id="sub2_value" strokeType="OUTSIDE" strokeWidth="0.0" text="03:34:52" wrappingWidth="198.13671875" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="30.0" />
                                  </font>
                               </Text>
                               <Text fx:id="sub3_value" strokeType="OUTSIDE" strokeWidth="0.0" text="02:54:22" wrappingWidth="198.13671875" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="30.0" />
                                  </font>
                               </Text>
                            </children>
@@ -155,13 +155,13 @@
                   </VBox>
                </children>
             </GridPane>
-            <ImageView fx:id="debug_indicator" fitHeight="50.0" fitWidth="50.0" layoutX="750.0" layoutY="387.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="debug_indicator" fitHeight="50.0" fitWidth="50.0" layoutX="1230.0" layoutY="630.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../debuggin.gif" />
                </image>
             </ImageView>
-            <Button fx:id="debug_fullscreen" layoutX="10.0" layoutY="400.0" mnemonicParsing="false" onAction="#debug_fullscreen_toggle" text="fullscreen_toggle" />
-            <Button fx:id="debug_state" layoutX="130.0" layoutY="400.0" mnemonicParsing="false" onAction="#debug_state_toggle" text="state_toggle" />
+            <Button fx:id="debug_fullscreen" layoutX="10.0" layoutY="630.0" mnemonicParsing="false" onAction="#debug_fullscreen_toggle" text="fullscreen_toggle" />
+            <Button fx:id="debug_state" layoutX="130.0" layoutY="630.0" mnemonicParsing="false" onAction="#debug_state_toggle" text="state_toggle" />
          </children>
       </Pane>
   </children>
