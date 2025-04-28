@@ -58,13 +58,13 @@
     <version>${pi4j.version}</version>
   </dependency>
 
-  <dependency>
-    <groupId>com.pi4j.devices</groupId>
-    <artifactId>rc522forpi4j</artifactId>
-    <version>0.1.0</version>
-    <scope>system</scope>
-    <systemPath>${project.basedir}/libs/rc522forpi4j-0.1.0.jar</systemPath>
-  </dependency>
+<!--  <dependency>-->
+<!--    <groupId>com.pi4j.devices</groupId>-->
+<!--    <artifactId>rc522forpi4j</artifactId>-->
+<!--    <version>0.1.0</version>-->
+<!--    <scope>system</scope>-->
+<!--    <systemPath>${project.basedir}/libs/rc522forpi4j-0.1.0.jar</systemPath>-->
+<!--  </dependency>-->
 
 
 </dependencies>
@@ -96,12 +96,12 @@
               <noManPages>true</noManPages>
               <stripDebug>true</stripDebug>
               <noHeaderFiles>true</noHeaderFiles>
-              <jlinkOptions>
-                --add-modules rc522forpi4j
-                --add-modules your.app.module
-                --bind-services
-                --patch-module rc522forpi4j=libs/rc522forpi4j-0.1.0.jar
-              </jlinkOptions>
+<!--              <jlinkOptions>-->
+<!--                &#45;&#45;add-modules rc522forpi4j-->
+<!--                &#45;&#45;add-modules your.app.module-->
+<!--                &#45;&#45;bind-services-->
+<!--                &#45;&#45;patch-module rc522forpi4j=libs/rc522forpi4j-0.1.0.jar-->
+<!--              </jlinkOptions>-->
             </configuration>
           </execution>
         </executions>
