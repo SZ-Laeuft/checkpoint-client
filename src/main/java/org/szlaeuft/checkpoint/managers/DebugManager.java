@@ -14,7 +14,7 @@ public class DebugManager {
     private Boolean fullscreen = false;
     private String state = "loading";
 
-    private StateManager sm;
+    public StateManager sm;
 
     public Boolean isDebug() {
         return debug;

@@ -6,7 +6,9 @@ module org.szlaeuft.checkpoint {
 
     opens org.szlaeuft.checkpoint to javafx.fxml;
     exports org.szlaeuft.checkpoint;
+
     exports org.szlaeuft.checkpoint.managers;
-    opens org.szlaeuft.checkpoint.managers to javafx.fxml;
+    opens org.szlaeuft.checkpoint.managers to javafx.fxml, com.google.gson; // Combined opens directive for both modules
+
     exports org.szlaeuft.checkpoint.helpers to com.google.gson;
 }

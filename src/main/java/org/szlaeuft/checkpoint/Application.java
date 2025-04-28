@@ -34,7 +34,7 @@ public class Application extends javafx.application.Application {
         dm.setStateManager(sm); //pass the state manger to the debug manager for debug purposes
 
         Platform.runLater(() -> {
-            new NFCAdapter();  // Start the NFCAdapter which will start the WebSocket server
+            new NFCAdapter(sm);  // Start the NFCAdapter which will start the WebSocket server
         });
 
     }
@@ -52,4 +52,5 @@ public class Application extends javafx.application.Application {
         checkForDebugFlag(args);
         launch();
     }
+
 }

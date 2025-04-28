@@ -5,11 +5,14 @@ import com.google.gson.GsonBuilder;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
+import org.szlaeuft.checkpoint.helpers.MessageHelper;
 import org.szlaeuft.checkpoint.helpers.NFCHelper;
+import org.szlaeuft.checkpoint.managers.StateManager;
 
 import java.net.InetSocketAddress;
 
 public class NFCServer extends WebSocketServer {
+    StateManager stateManager;
 
     public NFCServer(InetSocketAddress address) {
         super(address);
@@ -32,7 +35,8 @@ public class NFCServer extends WebSocketServer {
 
         Gson gson = builder.create();
         NFCHelper nfcstate = gson.fromJson(message, NFCHelper.class);
-        System.out.println(nfcstate);
+        System.out.println(nfcstate.toString());
+        this.execute(nfcstate);
     }
 
     @Override
@@ -45,7 +49,16 @@ public class NFCServer extends WebSocketServer {
         System.out.println("WebSocket server started successfully!");
     }
 
-    public void startServer() {
+    public void startServer(StateManager sm) {
         new Thread(this).start();
+        stateManager = sm;
+    }
+
+    public void setStateManager(StateManager stateManager) {
+        this.stateManager = stateManager;
+    }
+
+    public void execute (NFCHelper nfc) {
+        stateManager.setCurrentState(nfc.getState(), new MessageHelper("Test"));
     }
 }
