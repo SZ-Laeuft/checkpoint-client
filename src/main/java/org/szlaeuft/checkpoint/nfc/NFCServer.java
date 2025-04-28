@@ -1,8 +1,11 @@
 package org.szlaeuft.checkpoint.nfc;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
+import org.szlaeuft.checkpoint.helpers.NFCHelper;
 
 import java.net.InetSocketAddress;
 
@@ -24,7 +27,12 @@ public class NFCServer extends WebSocketServer {
 
     @Override
     public void onMessage(WebSocket conn, String message) {
-        System.out.println("Message from client: " + message);
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+
+        Gson gson = builder.create();
+        NFCHelper nfcstate = gson.fromJson(message, NFCHelper.class);
+        System.out.println(nfcstate);
     }
 
     @Override
