@@ -1,6 +1,7 @@
 module org.szlaeuft.checkpoint {
     requires javafx.controls;
     requires javafx.fxml;
+    requires Java.WebSocket;
 
 
     opens org.szlaeuft.checkpoint to javafx.fxml;

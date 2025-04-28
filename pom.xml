@@ -12,7 +12,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <junit.version>5.10.2</junit.version>
-    <pi4j.version>3.0.1</pi4j.version>
   </properties>
 
 <dependencies>
@@ -39,32 +38,16 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-  <!-- include Pi4J Core -->
   <dependency>
-    <groupId>com.pi4j</groupId>
-    <artifactId>pi4j-core</artifactId>
-    <version>${pi4j.version}</version>
-  </dependency>
-
-  <!-- include Pi4J Plugins (Platforms and I/O Providers) -->
-  <dependency>
-    <groupId>com.pi4j</groupId>
-    <artifactId>pi4j-plugin-raspberrypi</artifactId>
-    <version>${pi4j.version}</version>
+    <groupId>org.java-websocket</groupId>
+    <artifactId>Java-WebSocket</artifactId>
+    <version>1.5.2</version>
   </dependency>
   <dependency>
-    <groupId>com.pi4j</groupId>
-    <artifactId>pi4j-plugin-gpiod</artifactId>
-    <version>${pi4j.version}</version>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.9</version>
   </dependency>
-
-<!--  <dependency>-->
-<!--    <groupId>com.pi4j.devices</groupId>-->
-<!--    <artifactId>rc522forpi4j</artifactId>-->
-<!--    <version>0.1.0</version>-->
-<!--    <scope>system</scope>-->
-<!--    <systemPath>${project.basedir}/libs/rc522forpi4j-0.1.0.jar</systemPath>-->
-<!--  </dependency>-->
 
 
 </dependencies>
@@ -96,12 +79,6 @@
               <noManPages>true</noManPages>
               <stripDebug>true</stripDebug>
               <noHeaderFiles>true</noHeaderFiles>
-<!--              <jlinkOptions>-->
-<!--                &#45;&#45;add-modules rc522forpi4j-->
-<!--                &#45;&#45;add-modules your.app.module-->
-<!--                &#45;&#45;bind-services-->
-<!--                &#45;&#45;patch-module rc522forpi4j=libs/rc522forpi4j-0.1.0.jar-->
-<!--              </jlinkOptions>-->
             </configuration>
           </execution>
         </executions>

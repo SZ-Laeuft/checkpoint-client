@@ -1,10 +1,12 @@
 package org.szlaeuft.checkpoint;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.szlaeuft.checkpoint.managers.DebugManager;
 import org.szlaeuft.checkpoint.managers.StateManager;
+import org.szlaeuft.checkpoint.nfc.NFCAdapter;
 
 import java.io.IOException;
 
@@ -30,6 +32,11 @@ public class Application extends javafx.application.Application {
 
         sm.setCurrentState("idle", null);
         dm.setStateManager(sm); //pass the state manger to the debug manager for debug purposes
+
+        Platform.runLater(() -> {
+            new NFCAdapter();  // Start the NFCAdapter which will start the WebSocket server
+        });
+
     }
 
     private static void checkForDebugFlag(String[] a){
