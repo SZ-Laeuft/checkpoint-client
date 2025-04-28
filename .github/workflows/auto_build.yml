@@ -1,4 +1,4 @@
-name: JavaFX Nightly Build
+name: App Commit Build
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   nightly-build:
     runs-on: ubuntu-latest
-    name: Nightly JavaFX JLink Build
+    name: JavaFX JLink Build
     permissions:
       contents: write
       packages: write
@@ -48,15 +48,17 @@ jobs:
     - name: Get Date Tag
       id: tag
       run: |
-        echo "date_tag=nightly-$(date +'%Y-%m-%d-%H-%M')" >> "$GITHUB_OUTPUT"
+        echo "date_tag=cb-$(date +'%Y-%m-%d-%H-%M')" >> "$GITHUB_OUTPUT"
 
-    - name: Create GitHub Nightly Release
+    - name: Create GitHub Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         TAG=${{ steps.tag.outputs.date_tag }}
         COMMIT_MSG=$(git log -1 --pretty=format:"%s")
         gh release create "$TAG" target/app.zip \
-          --title "Nightly Build - $TAG" \
-          --notes "**Commit:** $COMMIT_MSG\n\nThis is an automated nightly build of the latest commit to main."
+          --title "Commit Build - $TAG" \
+          --notes "**Commit:** $COMMIT_MSG  | This is an automated build of the latest commit to main." \
+          --prerelease
+
 
