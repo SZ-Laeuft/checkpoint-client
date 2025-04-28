@@ -1,6 +1,7 @@
 module org.szlaeuft.checkpoint {
     requires javafx.controls;
     requires javafx.fxml;
+    requires rc522forpi4j;
 
 
     opens org.szlaeuft.checkpoint to javafx.fxml;

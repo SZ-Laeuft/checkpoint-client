@@ -11,9 +11,11 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<junit.version>5.10.2</junit.version>  </properties>
+<junit.version>5.10.2</junit.version>
+    <pi4j.version>3.0.1</pi4j.version>
+  </properties>
 
-  <dependencies>
+<dependencies>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
@@ -25,7 +27,7 @@
       <version>21</version>
     </dependency>
 
-<dependency>
+  <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>${junit.version}</version>
@@ -36,7 +38,36 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>  </dependencies>
+    </dependency>
+  <!-- include Pi4J Core -->
+  <dependency>
+    <groupId>com.pi4j</groupId>
+    <artifactId>pi4j-core</artifactId>
+    <version>${pi4j.version}</version>
+  </dependency>
+
+  <!-- include Pi4J Plugins (Platforms and I/O Providers) -->
+  <dependency>
+    <groupId>com.pi4j</groupId>
+    <artifactId>pi4j-plugin-raspberrypi</artifactId>
+    <version>${pi4j.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>com.pi4j</groupId>
+    <artifactId>pi4j-plugin-gpiod</artifactId>
+    <version>${pi4j.version}</version>
+  </dependency>
+
+  <dependency>
+    <groupId>com.pi4j.devices</groupId>
+    <artifactId>rc522forpi4j</artifactId>
+    <version>0.1.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/rc522forpi4j-0.1.0.jar</systemPath>
+  </dependency>
+
+
+</dependencies>
 
   <build>
     <plugins>

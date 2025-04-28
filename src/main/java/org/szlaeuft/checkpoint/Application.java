@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.szlaeuft.checkpoint.managers.DebugManager;
 import org.szlaeuft.checkpoint.managers.StateManager;
+import org.szlaeuft.checkpoint.nfc.NFCTest;
 
 import java.io.IOException;
 
@@ -20,6 +21,8 @@ public class Application extends javafx.application.Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.setFullScreen(true);
+
+        new NFCTest().start(sm);
 
         sm = new StateManager(stage);
         dm.setStage(stage); //execute after stage&scene has been loaded as to be able to access both
