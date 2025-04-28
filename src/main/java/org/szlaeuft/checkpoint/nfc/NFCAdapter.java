@@ -6,11 +6,12 @@ import java.net.InetSocketAddress;
 
 public class NFCAdapter {
 
-    private NFCServer nfcserver;
+    private NFCServer nfcServer;
 
     public NFCAdapter() {
-        // Initialize the WebSocket server
-        nfcserver = new NFCServer(new InetSocketAddress("localhost", 6969));
+        // Initialize the Jetty WebSocket server
+        nfcServer = new NFCServer(new InetSocketAddress("localhost", 6969));
+
         // Start the WebSocket server in a separate thread
         startWebSocketServer();
     }
@@ -18,7 +19,7 @@ public class NFCAdapter {
     private void startWebSocketServer() {
         // Running the WebSocket server on a separate thread to avoid blocking the main UI thread
         new Thread(() -> {
-            nfcserver.startServer();
+            nfcServer.startServer();
         }).start();
     }
 }
