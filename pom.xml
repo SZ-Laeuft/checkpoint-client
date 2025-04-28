@@ -96,6 +96,12 @@
               <noManPages>true</noManPages>
               <stripDebug>true</stripDebug>
               <noHeaderFiles>true</noHeaderFiles>
+              <jlinkOptions>
+                --add-modules rc522forpi4j
+                --add-modules your.app.module
+                --bind-services
+                --patch-module rc522forpi4j=libs/rc522forpi4j-0.1.0.jar
+              </jlinkOptions>
             </configuration>
           </execution>
         </executions>
