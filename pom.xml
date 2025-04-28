@@ -11,22 +11,25 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<junit.version>5.10.2</junit.version>
+    <junit.version>5.10.2</junit.version>
+    <javafx.version>21</javafx.version>
+    <gson.version>2.8.9</gson.version>
+    <java-websocket.version>1.5.2</java-websocket.version>
   </properties>
 
-<dependencies>
+  <dependencies>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>21</version>
+      <version>${javafx.version}</version>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
-      <version>21</version>
+      <version>${javafx.version}</version>
     </dependency>
 
-  <dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>${junit.version}</version>
@@ -39,19 +42,18 @@
       <scope>test</scope>
     </dependency>
 
-  <dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.9</version>
-  </dependency>
-  <dependency>
-    <groupId>org.eclipse.jetty.websocket</groupId>
-    <artifactId>websocket-server</artifactId>
-    <version>9.4.57.v20241219</version>
-  </dependency>
-
-
-</dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.java-websocket</groupId>
+      <artifactId>Java-WebSocket</artifactId>
+      <version>1.6.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
@@ -62,6 +64,10 @@
         <configuration>
           <source>21</source>
           <target>21</target>
+          <compilerArgs>
+            <arg>--add-reads</arg>
+            <arg>Java-WebSocket=ALL-UNNAMED</arg> <!-- Change Java-WebSocket to match the module name -->
+          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
@@ -70,10 +76,9 @@
         <version>0.0.8</version>
         <executions>
           <execution>
-            <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>org.szlaeuft.checkpoint/org.szlaeuft.checkpoint.Application</mainClass>
+              <mainClass>org.szlaeuft.checkpoint.Application</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

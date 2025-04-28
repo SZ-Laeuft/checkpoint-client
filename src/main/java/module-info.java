@@ -1,11 +1,7 @@
 module org.szlaeuft.checkpoint {
     requires javafx.controls;
     requires javafx.fxml;
-    requires org.eclipse.jetty.websocket.api;
-    requires org.eclipse.jetty.server;
-    requires org.eclipse.jetty.websocket.server;
-    requires org.eclipse.jetty.websocket.servlet;
-
+    requires org.java_websocket;
 
     opens org.szlaeuft.checkpoint to javafx.fxml;
     exports org.szlaeuft.checkpoint;
