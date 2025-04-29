@@ -59,6 +59,6 @@ public class NFCServer extends WebSocketServer {
     }
 
     public void execute (NFCHelper nfc) {
-        stateManager.setCurrentState(nfc.getState(), new MessageHelper("Test"));
+        stateManager.setCurrentState(nfc.getState(), new MessageHelper(nfc));
     }
 }

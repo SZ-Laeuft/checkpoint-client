@@ -84,4 +84,22 @@ public class MessageHelper {
     public String getSub3Value() {
         return sub3Value;
     }
+
+    public MessageHelper(NFCHelper nfc) {
+        String[] sub = nfc.getExtras().split("\\|");
+
+        // Use safe() to ensure null safety
+        title = safe(get(sub, 0));
+        sub1Label = safe(get(sub, 1));
+        sub1Value = safe(get(sub, 2));
+        sub2Label = safe(get(sub, 3));
+        sub2Value = safe(get(sub, 4));
+        sub3Label = safe(get(sub, 5));
+        sub3Value = safe(get(sub, 6));
+    }
+
+    // Helper method to avoid IndexOutOfBoundsException
+    private String get(String[] array, int index) {
+        return index < array.length ? array[index] : null;
+    }
 }
