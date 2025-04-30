@@ -44,6 +44,7 @@ public class DebugManager {
             System.out.println("Stage not yet loaded; unable to evaluate changes");
             return;
         }
+        stage.setFullScreenExitHint("");
 
         Button debug_fullscreen = (Button) stage.getScene().getRoot().lookup("#debug_fullscreen");
         Button debug_state = (Button) stage.getScene().getRoot().lookup("#debug_state");
@@ -59,6 +60,7 @@ public class DebugManager {
             debug_state.setCursor(Cursor.HAND);
             debug_image.setOpacity(1);
             stage.setFullScreen(false);
+            stage.setAlwaysOnTop(false);
         }
         else{
             stage.setTitle("SZ-Läuft - Checkpoint");
@@ -69,6 +71,7 @@ public class DebugManager {
             debug_state.setOpacity(0);
             debug_state.setCursor(Cursor.NONE);
             debug_image.setOpacity(0);
+            stage.setAlwaysOnTop(true);
         }
     }
 
@@ -76,9 +79,11 @@ public class DebugManager {
         fullscreen = !fullscreen;
         if(fullscreen){
             stage.setFullScreen(true);
+            stage.setAlwaysOnTop(true);
         }
         else{
             stage.setFullScreen(false);
+            stage.setAlwaysOnTop(false);
         }
     }
 
@@ -104,6 +109,10 @@ public class DebugManager {
                 state = "idle";
                 break;
         }
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 
 }

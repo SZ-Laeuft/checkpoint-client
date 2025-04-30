@@ -56,12 +56,10 @@
          <children>
           <MenuBar prefHeight="0.0" prefWidth="590.0" style="-fx-background-color: fff; -fx-padding: 9;" HBox.hgrow="ALWAYS">
             <menus>
-              <Menu mnemonicParsing="false" text="SZ-Läuft Checkpoint &lt;TIME&gt;">
+              <Menu fx:id="menutitle" mnemonicParsing="false" text="SZ-Läuft Checkpoint &lt;TIME&gt;">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#settings" text="Einstellungen" />
-                        <MenuItem mnemonicParsing="false" onAction="#debug_toggle" text="Debug" />
-                        <MenuItem mnemonicParsing="false" onAction="#restart" text="Neustart" />
-                        <MenuItem mnemonicParsing="false" onAction="#quit" text="Beenden" />
+                        <MenuItem mnemonicParsing="false" onAction="#info" text="Info" />
+                        <MenuItem fx:id="debug_btn" mnemonicParsing="false" onAction="#debug_toggle" text="Debug" />
                      </items>
               </Menu>
             </menus>
@@ -155,13 +153,13 @@
                   </VBox>
                </children>
             </GridPane>
-            <ImageView fx:id="debug_indicator" fitHeight="50.0" fitWidth="50.0" layoutX="1230.0" layoutY="630.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="debug_indicator" fitHeight="50.0" fitWidth="50.0" layoutX="1230.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../debuggin.gif" />
                </image>
             </ImageView>
-            <Button fx:id="debug_fullscreen" layoutX="10.0" layoutY="630.0" mnemonicParsing="false" onAction="#debug_fullscreen_toggle" text="fullscreen_toggle" />
-            <Button fx:id="debug_state" layoutX="130.0" layoutY="630.0" mnemonicParsing="false" onAction="#debug_state_toggle" text="state_toggle" />
+            <Button fx:id="debug_fullscreen" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#debug_fullscreen_toggle" text="fullscreen_toggle" />
+            <Button fx:id="debug_state" layoutX="130.0" layoutY="10.0" mnemonicParsing="false" onAction="#debug_state_toggle" text="state_toggle" />
          </children>
       </Pane>
   </children>
