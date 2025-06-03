@@ -1,64 +1,57 @@
+// HttpNFCServer.java
 package org.szlaeuft.checkpoint.nfc;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import org.java_websocket.WebSocket;
-import org.java_websocket.handshake.ClientHandshake;
-import org.java_websocket.server.WebSocketServer;
+import com.sun.net.httpserver.HttpServer;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 import org.szlaeuft.checkpoint.helpers.MessageHelper;
 import org.szlaeuft.checkpoint.helpers.NFCHelper;
 import org.szlaeuft.checkpoint.managers.StateManager;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
-public class NFCServer extends WebSocketServer {
-    StateManager stateManager;
+public class NFCServer {
+    private HttpServer server;
+    private StateManager stateManager;
 
-    public NFCServer(InetSocketAddress address) {
-        super(address);
-    }
-
-    @Override
-    public void onOpen(WebSocket conn, ClientHandshake handshake) {
-        System.out.println("New connection: " + conn.getRemoteSocketAddress());
-    }
-
-    @Override
-    public void onClose(WebSocket conn, int code, String reason, boolean remote) {
-        System.out.println("Closed connection: " + conn.getRemoteSocketAddress());
-    }
-
-    @Override
-    public void onMessage(WebSocket conn, String message) {
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-
-        Gson gson = builder.create();
-        NFCHelper nfcstate = gson.fromJson(message, NFCHelper.class);
-        System.out.println(nfcstate.toString());
-        this.execute(nfcstate);
-    }
-
-    @Override
-    public void onError(WebSocket conn, Exception ex) {
-        ex.printStackTrace();
-    }
-
-    @Override
-    public void onStart() {
-        System.out.println("WebSocket server started successfully!");
-    }
-
-    public void startServer(StateManager sm) {
-        new Thread(this).start();
-        stateManager = sm;
-    }
-
-    public void setStateManager(StateManager stateManager) {
+    public NFCServer(int port, StateManager stateManager) throws IOException {
         this.stateManager = stateManager;
+        server = HttpServer.create(new InetSocketAddress(port), 0);
+        server.createContext("/nfc", new NFCHandler());
+        server.setExecutor(null); // creates a default executor
     }
 
-    public void execute (NFCHelper nfc) {
-        stateManager.setCurrentState(nfc.getState(), new MessageHelper(nfc));
+    public void start() {
+        server.start();
+        System.out.println("HTTP server started on port " + server.getAddress().getPort());
+    }
+
+    class NFCHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            if (!"POST".equals(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(405, -1); // Method Not Allowed
+                return;
+            }
+
+            InputStream inputStream = exchange.getRequestBody();
+            byte[] bodyBytes = inputStream.readAllBytes();
+            String body = new String(bodyBytes);
+            System.out.println("Received NFC POST: " + body);
+
+            Gson gson = new Gson();
+            NFCHelper nfc = gson.fromJson(body, NFCHelper.class);
+            stateManager.setCurrentState(nfc.getState(), new MessageHelper(nfc));
+
+            String response = "NFC data processed";
+            exchange.sendResponseHeaders(200, response.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+        }
     }
 }
